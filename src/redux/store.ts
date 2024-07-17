@@ -23,6 +23,8 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
+  // This middleware ignores the actions that are not serializable by default
+  // serializable means that the action can be converted to a JSON string and back to an action object without any data loss or changes
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
