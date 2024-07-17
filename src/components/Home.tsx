@@ -1,28 +1,33 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   ImageBackground,
   StyleSheet,
   Text,
   View,
   Dimensions,
+  Button,
+  Touchable,
+  TouchableOpacity,
 } from 'react-native';
 import CustomHeader from './CustomHeader';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import {useSelector} from 'react-redux';
+import {selectChats, selectCurrentChatId} from '../redux/reducers/ChatSlice';
 
-// Getting screen dimensions
 const {height} = Dimensions.get('window');
-
-// Importing the image
 const homeBackground = require('../assets/w_bg.png');
 
 const Home = () => {
+  const chats = useSelector(selectChats);
+  const currentChatId = useSelector(selectCurrentChatId);
+  console.log('chats', chats);
+  console.log('currentChatId', currentChatId);
   return (
     <ImageBackground
       source={homeBackground}
       style={styles.backgroundImage}
       resizeMode="cover">
-        <CustomHeader />
-      </ImageBackground>
+      <CustomHeader />
+    </ImageBackground>
   );
 };
 
